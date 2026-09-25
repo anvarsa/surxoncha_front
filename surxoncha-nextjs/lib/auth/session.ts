@@ -4,7 +4,11 @@ import { authOptions } from "./options";
 import type { UserRole } from "@/types/content";
 
 export async function getSession() {
-  return getServerSession(authOptions);
+  try {
+    return await getServerSession(authOptions);
+  } catch {
+    return null;
+  }
 }
 
 export async function getCurrentUser() {
