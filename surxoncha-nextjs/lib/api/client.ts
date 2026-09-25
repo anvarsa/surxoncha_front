@@ -1,12 +1,10 @@
 // Barcha Strapi so'rovlari shu fayl orqali o'tadi.
 // Komponentlarda to'g'ridan-to'g'ri fetch() ishlatmang — /lib/api/*.ts dan foydalaning.
 
-const STRAPI_URL = process.env.STRAPI_URL?.replace(/\/+$/, "");
+const STRAPI_URL = (
+  process.env.STRAPI_URL || "https://cms.surxoncha.uz"
+).replace(/\/+$/, "");
 const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN;
-
-if (!STRAPI_URL) {
-  throw new Error("STRAPI_URL environment variable is not set");
-}
 
 export class ApiError extends Error {
   status: number;
