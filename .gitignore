@@ -1,0 +1,29 @@
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+!.env.production.example
+
+# Dependencies and build output
+node_modules/
+.next/
+dist/
+build/
+.strapi/
+*.tsbuildinfo
+
+# Runtime data and logs
+*.log
+*.pid
+.tmp/
+*.sqlite
+*.sqlite3
+
+# Uploaded media is runtime data, not source code
+surxoncha-cms/public/uploads/*
+!surxoncha-cms/public/uploads/.gitkeep
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
