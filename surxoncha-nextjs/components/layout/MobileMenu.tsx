@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { MAIN_NAV } from "@/config/nav";
@@ -8,23 +8,52 @@ import { MAIN_NAV } from "@/config/nav";
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
   return (
     <>
       <button
+        type="button"
         onClick={() => setOpen(true)}
-        aria-label="Menyu"
-        className="md:hidden p-2 -ml-2"
+        aria-label="Menyuni ochish"
+        aria-expanded={open}
+        className="md:hidden inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-text transition hover:bg-bg"
       >
         <Menu className="h-6 w-6" />
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
-          <nav className="absolute top-0 left-0 h-full w-72 bg-surface p-5 overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
-              <span className="font-extrabold text-primary">SURXONCHA.UZ</span>
-              <button onClick={() => setOpen(false)} aria-label="Yopish">
+        <div className="fixed inset-0 z-[60] md:hidden" role="dialog" aria-modal="true" aria-label="Mobil menyu">
+          <button
+            type="button"
+            aria-label="Menyuni yopish"
+            className="absolute inset-0 h-full w-full cursor-default bg-black/45"
+            onClick={() => setOpen(false)}
+          />
+          <nav className="relative h-full w-[min(21rem,calc(100vw-2rem))] overflow-y-auto bg-surface px-5 pb-8 pt-5 shadow-2xl">
+            <div className="mb-7 flex items-center justify-between">
+              <span className="font-extrabold tracking-tight text-primary">SURXONCHA<span className="text-secondary">.UZ</span></span>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Menyuni yopish"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-bg"
+              >
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -34,7 +63,7 @@ export function MobileMenu() {
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="block py-2.5 text-[15px] font-medium border-b border-border/60"
+                    className="block rounded-lg border-b border-border/60 px-3 py-3 text-[15px] font-medium transition hover:bg-bg hover:text-primary"
                   >
                     {item.label}
                   </Link>
@@ -44,7 +73,7 @@ export function MobileMenu() {
             <Link
               href="/submit"
               onClick={() => setOpen(false)}
-              className="mt-6 block text-center rounded bg-primary text-white font-semibold py-2.5 text-sm"
+              className="mt-7 block rounded-lg bg-primary px-4 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
             >
               Xabar yuborish
             </Link>

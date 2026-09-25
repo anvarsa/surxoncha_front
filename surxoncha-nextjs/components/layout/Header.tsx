@@ -26,10 +26,10 @@ export async function Header() {
       </div>
 
       {/* Main header */}
-      <div className="container flex items-center justify-between py-3 gap-4">
-        <div className="flex items-center gap-2">
+      <div className="container flex min-w-0 items-center justify-between gap-2 py-3 sm:gap-4">
+        <div className="flex min-w-0 shrink items-center gap-1 sm:gap-2">
           <MobileMenu />
-          <Link href="/" className="text-xl font-extrabold tracking-tight text-primary shrink-0">
+          <Link href="/" className="truncate text-lg font-extrabold tracking-tight text-primary sm:text-xl">
             SURXONCHA<span className="text-secondary">.UZ</span>
           </Link>
         </div>
@@ -42,7 +42,7 @@ export async function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           <div className="hidden sm:block">
             <SearchBox />
           </div>
