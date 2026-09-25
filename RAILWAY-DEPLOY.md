@@ -54,6 +54,10 @@ The first admin setup and any required API permissions must be completed in Stra
 
 ## 2. Frontend service
 
+For the frontend Railway service, set **Root Directory** to `surxoncha-nextjs`.
+This makes Railway use `surxoncha-nextjs/railway.json` and
+`surxoncha-nextjs/Dockerfile` for the Next.js deployment.
+
 Set these Railway variables after the CMS domain exists:
 
 ```env
@@ -66,6 +70,7 @@ NEXT_PUBLIC_STRAPI_URL=https://<cms-domain>
 STRAPI_MEDIA_HOSTNAME=<cms-domain-without-https>
 STRAPI_API_TOKEN=<read-only-strapi-token>
 AUTH_URL=https://<frontend-domain>
+NEXTAUTH_URL=https://<frontend-domain>
 AUTH_SECRET=<random-value>
 REVALIDATE_SECRET=<same-value-configured-in-strapi-webhook>
 NEXT_REVALIDATE_URL=https://<frontend-domain>/api/revalidate
