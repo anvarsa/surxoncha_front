@@ -18,13 +18,13 @@ export function VideoSection({ videos }: { videos: HomeVideo[] }) {
   return (
     <section>
       <SectionHeader title="Video" />
-      <div className="grid gap-5 sm:grid-cols-2">
-        {videos.slice(0, 4).map((video) => {
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        {videos.slice(0, 6).map((video) => {
           const embedUrl = youtubeEmbed(video.sourceUrl);
           const videoUrl = video.videoFile?.url ? mediaUrl(video.videoFile.url) : null;
           const canPlay = Boolean(embedUrl || videoUrl);
           return (
-            <article key={video.id} className="overflow-hidden rounded border border-border bg-surface">
+            <article key={video.id} className="overflow-hidden rounded border border-border bg-surface shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
               <div className="relative aspect-video bg-black">
                 {playing === video.id && embedUrl ? (
                   <iframe src={embedUrl} title={video.title} allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen className="h-full w-full" />
