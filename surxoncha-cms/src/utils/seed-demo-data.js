@@ -7,7 +7,7 @@ const DEMO_ARTICLES = [
     category: 'yangiliklar',
     region: 'termiz-shahri',
     excerpt: 'Yosh muxbirlar uchun yangi media laboratoriyada video, foto va mobil jurnalistika mashgulotlari boshlandi.',
-    content: 'Bu demo maqola SURXONCHA.UZ platformasining nashr oqimini korsatish uchun yaratildi. Media laboratoriyada yoshlar reportaj tayyorlash, intervyu olish va materialni tahririyatga yuborishni o‘rganadi.',
+    content: 'Bu demo maqola SURXONCHA.UZ platformasining nashr oqimini ko‘rsatish uchun yaratildi. Media laboratoriyada yoshlar reportaj tayyorlash, intervyu olish va materialni tahririyatga yuborishni o‘rganadi.',
     featured: true,
     viewCount: 128,
   },
@@ -47,6 +47,51 @@ const DEMO_ARTICLES = [
     content: 'Demo yoshlar materiali: tanlov ishtirokchilari mobil telefon yordamida hikoya tayyorlab, tahririyatga yuboradi. Bu material submit va editorial workflow uchun namuna sifatida ishlatiladi.',
     viewCount: 48,
   },
+  {
+    title: 'Demo: Termizdagi ta’lim innovatsiyalari',
+    contentType: 'news',
+    category: 'talim',
+    region: 'termiz-shahri',
+    excerpt: 'Maktablar va kollejlar yangi texnologik usullar orqali o‘qitishni yanada samarali qilishga harakat qilmoqda.',
+    content: 'Demo ta’lim maqolasi: o‘qituvchilar, o‘quvchilar va ota-onalar o‘rta maktabda zamonaviy pedagogika va digital vositalardan qanday foydalanish haqida fikr almashdilar.',
+    viewCount: 55,
+  },
+  {
+    title: 'Demo: Boysun madaniyati va an’analarni saqlab qolish',
+    contentType: 'news',
+    category: 'madaniyat',
+    region: 'boysun',
+    excerpt: 'Mahalliy an’ana va san’at namoyondalari yosh avlodga madaniy merosni yetkazishda muhim rol o‘ynamoqda.',
+    content: 'Demo madaniyat materialida Boysun hududidagi festivallar, xalq ijodi va an’anaviy amaliyotlar haqida hikoya qilinadi.',
+    viewCount: 44,
+  },
+  {
+    title: 'Demo: Surxondaryo sport maktablari yangi yutuqlarni qidirmoqda',
+    contentType: 'news',
+    category: 'sport',
+    region: 'termiz-shahri',
+    excerpt: 'Yosh sportchilar, trenerlar va mahalliy jamoalar yangi qadamlar bilan viloyat sportini ilgari surmoqda.',
+    content: 'Demo sport maqolasi: sport tadbirlari, maktab musobaqalari va yosh sportchilarning intilishlari haqida qisqa va ta’sirli hikoya.',
+    viewCount: 67,
+  },
+  {
+    title: 'Demo: Mahalliy jamiyatda ko‘ngilli kadrlar ko‘paymoqda',
+    contentType: 'news',
+    category: 'jamiyat',
+    region: 'sherobod',
+    excerpt: 'Ko‘ngilli faollar mahalla muammolari va ijtimoiy loyihalar ustida ishlash orqali keng jamoani birlashtirmoqda.',
+    content: 'Demo jamiyat maqolasi: ko‘ngilli tashkilotlar, mahalla faollari va yoshlar o‘rtasidagi hamkorlikni ko‘rsatadi.',
+    viewCount: 52,
+  },
+  {
+    title: 'Demo: Denovdagi texnologik startaplar yangi bosqichga chiqdi',
+    contentType: 'news',
+    category: 'texnologiya',
+    region: 'denov',
+    excerpt: 'Dasturchilar va tadbirkorlar logistik, ta’lim va savdo sohalarida yangi texnologiyalarni joriy qilmoqda.',
+    content: 'Demo texnologiya maqolasi: mahalliy startaplar va digital platformalar viloyatdagi kichik bizneslarni qanday rivojlantirishga yordam berayotganini yoritadi.',
+    viewCount: 58,
+  },
 ];
 
 const DEMO_PHOTOS = [
@@ -63,7 +108,18 @@ const DEMO_VIDEOS = [
 ];
 
 const DEMO_REGIONS = ['Termiz shahri', 'Angor', 'Denov', 'Boysun', 'Sherobod', 'Uzun'];
-const DEMO_CATEGORIES = ['Yangiliklar', 'Jamiyat', 'Ta\'lim', 'Biznes', 'Yoshlar', 'Texnologiya', 'Madaniyat', 'Sport', 'Intervyu', 'Reportaj'];
+const DEMO_CATEGORIES = [
+  'Yangiliklar',
+  'Intervyu',
+  'Reportaj',
+  'Biznes',
+  'Yoshlar',
+  "Ta'lim",
+  'Madaniyat',
+  'Sport',
+  'Jamiyat',
+  'Texnologiya',
+];
 
 function slugify(value) {
   return value.toLowerCase().replace(/[’‘']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
