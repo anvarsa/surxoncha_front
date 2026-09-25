@@ -1,18 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Telegram, Instagram, Youtube, Share2 } from "lucide-react-native";
-import { Send, Camera, Video, Share2 as ShareIcon } from "lucide-react";
+import { Send, Camera, Video, Share2 } from "lucide-react";
 import type { Article } from "@/types/content";
 import { mediaUrl } from "@/lib/utils";
 import { getSiteSettings } from "@/lib/api/site";
-import { ArticleMeta } from "@/components/article/ArticleMeta";
 
 function PopularArticleCircle({ article, index }: { article: Article; index: number }) {
   return (
-    <Link href={`/news/${article.slug}`} className="group text-center transition">
-      <div className="relative mb-4 inline-block">
-        {/* Circular image */}
-        <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-secondary/30 shadow-lg transition group-hover:border-secondary group-hover:shadow-xl">
+    <Link href={`/news/${article.slug}`} className="group block text-center transition">
+      <div className="relative mx-auto mb-4 inline-block">
+        <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-secondary/30 shadow-md transition group-hover:border-secondary group-hover:shadow-xl sm:h-32 sm:w-32">
           <Image
             src={mediaUrl(article.coverImage?.url)}
             alt={article.coverImage?.alternativeText || article.title}
@@ -20,11 +17,12 @@ function PopularArticleCircle({ article, index }: { article: Article; index: num
             className="object-cover transition duration-500 group-hover:scale-110"
           />
         </div>
-        {/* Number badge */}
-        <span className="absolute -right-1 -top-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-extrabold text-white shadow-md">
+
+        <span className="absolute -right-1 -top-1 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-extrabold text-white shadow-md sm:h-8 sm:w-8">
           {index + 1}
         </span>
       </div>
+
       <h3 className="line-clamp-3 text-sm font-bold leading-snug text-text transition group-hover:text-primary">
         {article.title}
       </h3>
@@ -35,25 +33,29 @@ function PopularArticleCircle({ article, index }: { article: Article; index: num
 
 export async function PopularWithSocial({ articles }: { articles: Article[] }) {
   let settings = null;
+
   try {
     settings = await getSiteSettings();
   } catch {
     settings = null;
   }
 
-  if (articles.length === 0) return null;
+  if (!articles.length) return null;
 
   const socialLinks = [
-    { icon: Send, href: settings?.telegramUrl, label: "Telegram" },
-    { icon: Camera, href: settings?.instagramUrl, label: "Instagram" },
-    { icon: Video, href: settings?.youtubeUrl, label: "YouTube" },
-    { icon: ShareIcon, href: settings?.xUrl, label: "X" },
-  ].filter((link) => link.href);
+    { label: "Telegram", href: settings?.telegramUrl, icon: Send },
+    { label: "Instagram", href: settings?.instagramUrl, icon: Camera },
+    { label: "YouTube", href: settings?.youtubeUrl, icon: Video },
+    { label: "X", href: settings?.xUrl, icon: Share2 },
+  ].filter(
+    (item): item is { label: string; href: string; icon: typeof Send } => !!item.href
+  );
 
   return (
-    <section>
-      <div className="mb-8">
-        <h2 className="mb-6 text-2xl font-extrabold text-text">Eng ko'p ko'rilgan</h2>
+    <section className="space-y-8">
+      <div>
+        <h2 className="mb-6 text-2xl font-extrabold text-text">Eng ko&apos;p ko&apos;rilgan</h2>
+
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
           {articles.slice(0, 4).map((article, index) => (
             <PopularArticleCircle key={article.id} article={article} index={index} />
@@ -61,19 +63,19 @@ export async function PopularWithSocial({ articles }: { articles: Article[] }) {
         </div>
       </div>
 
-      {/* Social media section */}
       {socialLinks.length > 0 && (
-        <div className="rounded-2xl border border-border/80 bg-gradient-to-br from-secondary/5 to-primary/5 p-8 text-center">
+        <div className="rounded-2xl border border-border/80 bg-gradient-to-br from-secondary/5 to-primary/5 p-6 text-center">
           <p className="mb-4 text-sm font-semibold text-muted">Bizni kuzatib boring</p>
+
           <div className="flex items-center justify-center gap-4">
-            {socialLinks.map(({ icon: Icon, href, label }) => (
+            {socialLinks.map(({ label, href, icon: Icon }) => (
               <a
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 text-primary transition hover:border-primary hover:bg-primary hover:text-white"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/20 bg-white text-primary transition hover:border-primary hover:bg-primary hover:text-white"
               >
                 <Icon className="h-5 w-5" />
               </a>

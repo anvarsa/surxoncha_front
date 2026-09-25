@@ -47,7 +47,9 @@ export function MobileMenu() {
           />
           <nav className="relative h-full w-[min(21rem,calc(100vw-2rem))] overflow-y-auto bg-surface px-5 pb-8 pt-5 shadow-2xl">
             <div className="mb-7 flex items-center justify-between">
-              <span className="font-extrabold tracking-tight text-primary">SURXONCHA<span className="text-secondary">.UZ</span></span>
+              <span className="font-extrabold tracking-tight text-primary">
+                SURXONCHA<span className="text-secondary">.UZ</span>
+              </span>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
@@ -57,6 +59,7 @@ export function MobileMenu() {
                 <X className="h-5 w-5" />
               </button>
             </div>
+
             <ul className="space-y-1">
               {MAIN_NAV.map((item) => (
                 <li key={item.href}>
@@ -70,6 +73,7 @@ export function MobileMenu() {
                 </li>
               ))}
             </ul>
+
             <Link
               href="/submit"
               onClick={() => setOpen(false)}
