@@ -21,6 +21,7 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/dist/config ./config
 COPY --from=builder /app/dist/src ./src
+COPY --from=builder /app/src/utils/seed-demo-data.js ./src/utils/seed-demo-data.js
 
 EXPOSE 1337
 CMD ["npm", "run", "start"]
