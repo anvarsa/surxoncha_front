@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_comments",
+  "info": {
+    "singularName": "article-comment",
+    "pluralName": "article-comments",
+    "displayName": "Article Comment"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "comments"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 80
+    },
+    "email": {
+      "type": "email"
+    },
+    "message": {
+      "type": "text",
+      "required": true,
+      "maxLength": 1000
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

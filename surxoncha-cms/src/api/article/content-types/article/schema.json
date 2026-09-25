@@ -1,0 +1,148 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": "Yangilik, intervyu yoki reportaj maqolasi"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "maxLength": 160,
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text",
+      "maxLength": 300,
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "gallery": {
+      "type": "component",
+      "component": "article.gallery-image",
+      "repeatable": true
+    },
+    "videoUrl": {
+      "type": "string"
+    },
+    "contentType": {
+      "type": "enumeration",
+      "required": true,
+      "default": "news",
+      "enum": [
+        "news",
+        "interview",
+        "reportage",
+        "business",
+        "youth"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
+    },
+    "region": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::region.region",
+      "inversedBy": "articles"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author-profile.author-profile",
+      "inversedBy": "articles"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "articles"
+    },
+    "source": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "required": true,
+      "default": "draft",
+      "enum": [
+        "draft",
+        "submitted",
+        "in_review",
+        "revision_requested",
+        "approved",
+        "published",
+        "rejected",
+        "archived"
+      ]
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "breaking": {
+      "type": "boolean",
+      "default": false
+    },
+    "sponsored": {
+      "type": "boolean",
+      "default": false
+    },
+    "readingTime": {
+      "type": "integer",
+      "default": 1
+    },
+    "viewCount": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "corrections": {
+      "type": "component",
+      "component": "article.correction-note",
+      "repeatable": true
+    },
+    "editorialActions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::editorial-action.editorial-action",
+      "mappedBy": "article"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article-comment.article-comment",
+      "mappedBy": "article"
+    }
+  }
+}
