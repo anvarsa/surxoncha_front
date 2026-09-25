@@ -7,9 +7,9 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 # Railway may not expose runtime variables during image build.
-ENV STRAPI_URL=https://cms.surxoncha.uz
-ENV NEXT_PUBLIC_STRAPI_URL=https://cms.surxoncha.uz
-ENV STRAPI_MEDIA_HOSTNAME=cms.surxoncha.uz
+ENV STRAPI_URL=https://surxonchafront-production-7610.up.railway.app
+ENV NEXT_PUBLIC_STRAPI_URL=https://surxonchafront-production-7610.up.railway.app
+ENV STRAPI_MEDIA_HOSTNAME=surxonchafront-production-7610.up.railway.app
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 RUN npm run build

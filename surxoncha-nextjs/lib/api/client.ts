@@ -2,7 +2,7 @@
 // Komponentlarda to'g'ridan-to'g'ri fetch() ishlatmang — /lib/api/*.ts dan foydalaning.
 
 const STRAPI_URL = (
-  process.env.STRAPI_URL || "https://cms.surxoncha.uz"
+  process.env.STRAPI_URL || "https://surxonchafront-production-7610.up.railway.app"
 ).replace(/\/+$/, "");
 const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN;
 
