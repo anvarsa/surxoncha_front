@@ -16,9 +16,12 @@ NODE_ENV=production
 HOST=0.0.0.0
 PORT=1337
 DATABASE_CLIENT=postgres
-DATABASE_URL=${{Postgres.DATABASE_URL}}
-DATABASE_SSL=true
-DATABASE_SSL_REJECT_UNAUTHORIZED=false
+DATABASE_HOST=${{Postgres.PGHOST}}
+DATABASE_PORT=${{Postgres.PGPORT}}
+DATABASE_NAME=${{Postgres.PGDATABASE}}
+DATABASE_USERNAME=${{Postgres.PGUSER}}
+DATABASE_PASSWORD=${{Postgres.PGPASSWORD}}
+DATABASE_SSL=false
 APP_KEYS=<four-comma-separated-random-values>
 API_TOKEN_SALT=<random-value>
 ADMIN_JWT_SECRET=<random-value>
@@ -26,6 +29,14 @@ TRANSFER_TOKEN_SALT=<random-value>
 JWT_SECRET=<random-value>
 CORS_ORIGINS=https://<frontend-domain>,https://<cms-domain>
 ```
+
+Do not use `${{Postgres.DATABASE_URL}}` here if the Postgres service shows that
+variable as empty. The Railway Postgres service in this project exposes the
+working connection values as `PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER`, and
+`PGPASSWORD`. Add these as **variable references** on the CMS service. Remove
+any CMS variables named `DATABASE_URL`, `PGHOST`, `PGPORT`, `PGDATABASE`,
+`PGUSER`, or `PGPASSWORD` that were added as literal values; keep only the five
+`DATABASE_*` references above.
 
 Generate secrets locally with:
 
