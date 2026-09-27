@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "author_profiles",
+  "info": {
+    "singularName": "author-profile",
+    "pluralName": "author-profiles",
+    "displayName": "Author Profile",
+    "description": "Public contributor/reporter profile. Never expose the linked user's email/phone via the public API — those live only on plugin::users-permissions.user."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "username": {
+      "type": "uid",
+      "required": true
+    },
+    "displayName": {
+      "type": "string",
+      "required": true
+    },
+    "bio": {
+      "type": "text",
+      "maxLength": 500
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "communityRole": {
+      "type": "enumeration",
+      "required": true,
+      "default": "registered_user",
+      "enum": [
+        "administrator",
+        "editor",
+        "moderator",
+        "contributor",
+        "reporter",
+        "registered_user"
+      ]
+    },
+    "mediaInterests": {
+      "type": "json"
+    },
+    "telegram": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    },
+    "portfolioUrl": {
+      "type": "string"
+    },
+    "joinedAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "author"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_settings",
+  "info": {
+    "singularName": "site-setting",
+    "pluralName": "site-settings",
+    "displayName": "Site Settings"
+  },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "siteName": { "type": "string", "default": "SURXONCHA.UZ" },
+    "tagline": { "type": "string", "default": "Surxondaryoni uning o'z yoshlari hikoya qiladi." },
+    "logo": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "favicon": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "contactEmail": { "type": "email" },
+    "contactPhone": { "type": "string" },
+    "telegramUrl": { "type": "string" },
+    "instagramUrl": { "type": "string" },
+    "youtubeUrl": { "type": "string" },
+    "xUrl": { "type": "string" },
+    "footerText": { "type": "text" },
+    "copyrightText": { "type": "string" },
+    "googleSiteVerification": { "type": "string" },
+    "analyticsId": { "type": "string" },
+    "defaultSeo": { "type": "component", "repeatable": false, "component": "shared.seo" },
+    "heroArticle": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article.article"
+    },
+    "editorsPicks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    }
+  }
+}

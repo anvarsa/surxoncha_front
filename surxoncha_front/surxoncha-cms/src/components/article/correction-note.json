@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_article_correction_notes",
+  "info": {
+    "displayName": "Correction Note",
+    "icon": "pencil"
+  },
+  "options": {},
+  "attributes": {
+    "note": { "type": "text", "required": true },
+    "correctedAt": { "type": "datetime", "required": true },
+    "editor": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::author-profile.author-profile"
+    }
+  }
+}

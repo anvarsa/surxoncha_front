@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "editorial_actions",
+  "info": {
+    "singularName": "editorial-action",
+    "pluralName": "editorial-actions",
+    "displayName": "Editorial Action",
+    "description": "Immutable audit log entry for editorial decisions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "editorialActions"
+    },
+    "editor": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author-profile.author-profile"
+    },
+    "action": {
+      "type": "enumeration",
+      "enum": [
+        "approve",
+        "reject",
+        "request_revision",
+        "publish",
+        "archive"
+      ],
+      "required": true
+    },
+    "note": {
+      "type": "text"
+    }
+  }
+}

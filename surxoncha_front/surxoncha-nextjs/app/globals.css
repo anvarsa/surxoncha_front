@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  SURXONCHA.UZ — Design Tokens
+  Barcha ranglar RGB channel formatida (Tailwind alpha-value uchun).
+  Rangni almashtirish uchun faqat shu joyni o'zgartiring — komponentlarga tegmang.
+*/
+
+:root {
+  --color-primary: 18 60 53;      /* #123C35 Deep Surxon Green */
+  --color-secondary: 217 184 120; /* #D9B878 Warm Sand */
+  --color-bg: 247 245 240;        /* #F7F5F0 */
+  --color-surface: 255 255 255;   /* #FFFFFF */
+  --color-text: 23 26 25;         /* #171A19 */
+  --color-muted: 104 113 109;     /* #68716D */
+  --color-border: 224 220 210;    /* light neutral border */
+  --color-breaking: 178 34 34;    /* urgent/breaking accent — use sparingly */
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+}
+
+.dark {
+  --color-primary: 44 110 98;
+  --color-secondary: 217 184 120;
+  --color-bg: 13 21 19;           /* #0D1513 */
+  --color-surface: 20 30 27;
+  --color-text: 237 240 238;
+  --color-muted: 150 160 156;
+  --color-border: 40 52 48;
+  --color-breaking: 214 82 82;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+  }
+  h1 {
+    @apply text-h1-mobile md:text-h1-desktop tracking-tight;
+  }
+  h2 {
+    @apply text-h2-mobile md:text-h2-desktop tracking-tight;
+  }
+  h3 {
+    @apply text-h3-mobile md:text-h3-desktop;
+  }
+  a {
+    @apply text-inherit;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-secondary));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .article-prose {
+    @apply text-article-body text-text max-w-article;
+  }
+  .article-prose p {
+    @apply mb-5;
+  }
+  .article-prose h2 {
+    @apply mt-10 mb-4;
+  }
+  .article-prose img {
+    @apply rounded-lg my-6;
+  }
+  .category-pill {
+    @apply inline-flex items-center px-2.5 py-1 text-xs font-semibold uppercase tracking-wide rounded-sm bg-primary text-white;
+  }
+  .breaking-pill {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-bold uppercase tracking-wide rounded-sm bg-breaking text-white;
+  }
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
